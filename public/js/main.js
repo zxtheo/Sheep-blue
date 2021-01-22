@@ -1,4 +1,4 @@
-const p5 = require('p5');
+
 var sheepList = [];
 var dogList = [];
 var states = []; //[sheep1x, sheep1y.....sheepNx, sheepNy, targetpointa, targetpointb, targetpointc, targetpointd, dogx, dogy, dogDirection, dogLeft, dogRight, dogForward]
