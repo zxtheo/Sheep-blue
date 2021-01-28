@@ -4,12 +4,14 @@ var dogList = [];
 var states = []; //[sheep1x, sheep1y.....sheepNx, sheepNy, targetpointa, targetpointb, targetpointc, targetpointd, dogx, dogy, dogDirection, dogLeft, dogRight, dogForward]
 
 var start = false;
+var end = false;
 var timer = null;
-var interval = 100 * 1000;
+var timegiven = 5;
+var interval = timegiven * 1000;
 
-var score = 0;
+var score = null;
 
-var noOfSheep = 30;
+var noOfSheep = 1;
 var noOfDogs = 1;
 var c = {
     width: 600,
@@ -92,11 +94,11 @@ var draw = function(p){
     p.draw = function() {
         p.background('green');
         framerate();
-        drawTimer();
+        
         drawTarget();
         drawSheep();
         drawDog();
-        
+        drawTimer();
     }
 
     p.mousePressed = function(){
@@ -112,19 +114,23 @@ var draw = function(p){
     }
 
     p.mouseDragged = function(){
-        if (!start){
+        if (!start && !end){
             target.width =  p.mouseY - target.starty;
             target.height =  p.mouseX - target.startx;
         }
     }
 
     p.mouseReleased = function(){
-        locked = false;
+        if (!start && !end){
+            locked = false;
+        }
     }
 
     p.keyPressed = function(){
-        if (keyCode == ENTER) {
-          start = true;
+        if (!end){
+            if (keyCode == ENTER) {
+            start = true;
+            }
         }
         
     }
@@ -164,12 +170,15 @@ var draw = function(p){
             if (timer == null){
                 timer = p.millis() + interval;
             }
-            if (timer < p.millis()) {
-                p.text("GAME OVER", width/2, height*0.7);
+            if (timer-p.millis() < 0) {
                 start = false;
-                timer = null;
+                end = true;
                 saveToFile();
               }
+        }
+        else if (end){
+            p.text("GAME OVER", c.width/2-150, c.height/2);
+            p.text("SCORE: " + score, c.width/2-120, c.height/2 + 100);
         }
     }
 

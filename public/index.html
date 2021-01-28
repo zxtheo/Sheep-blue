@@ -1,20 +1,40 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/p5.collide2d"></script>
 
+        <script src="js/animal.js"></script>
         <script src="js/tools.js"></script>
         <script src="js/dog.js"></script>
         <script src="js/sheep.js"></script>
         <script src="js/main.js"></script>
         
 
-        <div id = "c1"></div>
-        <div id = "c2"></div>
+
+        <div id="pannels">
+            <div id="gamescreen" class="left">
+                <div id="c2" class="center"></div>
+            </div>
+            <!-- <div id="leaderboard" class="center">
+                <h1>Leaderboard</h1>   
+            </div> -->
+        </div>
+        <!-- <div id="instructions">
+                <h1>How To Play</h1>               
+        </div>
+
+        <div id="c1"></div> -->
+        
+
+
         <p>speed:</p>
         <input type="range" min="12" max="100" value="12" class="slider" id="speed">
         <p>framerate:</p>
         <input type="range" min="12" max="60" value="12" class="slider" id="framerate">
         <p></p>
+        
     </body>
 </html>
