@@ -1,4 +1,13 @@
 
+var timegiven = 5;
+var noOfSheep = 1;
+var noOfDogs = 1;
+var c = {
+    width: 600,
+    height: 600
+}
+
+
 var sheepList = [];
 var dogList = [];
 var states = []; //[sheep1x, sheep1y.....sheepNx, sheepNy, targetpointa, targetpointb, targetpointc, targetpointd, dogx, dogy, dogDirection, dogLeft, dogRight, dogForward]
@@ -18,13 +27,7 @@ var target = {
 
 
 
-var timegiven = 5;
-var noOfSheep = 1;
-var noOfDogs = 1;
-var c = {
-    width: 600,
-    height: 600
-}
+
 
 
 
@@ -188,8 +191,35 @@ var draw = function(p){
     function saveToFile(){
         var csv = states.map(function(d){
             return d.join(',');
-        }).join('\n');     
-        downloadToFile(csv, 'recordings/test.csv', 'text/csv');
+        }).join('\n');    
+        sendJson(states, "http://127.0.0.1:5000/postdata");
+        //downloadToFile(csv, 'recordings/test.csv', 'text/csv');
+    }
+
+    function sendJson(content, url){
+        //create xhr object
+        let xhr = new XMLHttpRequest(); 
+        //open conneciton
+        xhr.open("POST", url, true); 
+        //set request header
+        xhr.setRequestHeader("Content-Type", "application/json"); 
+        // Create a state change callback 
+        xhr.onreadystatechange = function () { 
+            if (xhr.readyState === 4 && xhr.status === 200) { 
+
+                // Print received data from server 
+                result.innerHTML = this.responseText; 
+
+            } 
+        };
+        // Converting JSON data to string 
+        var date = new Date().toLocaleDateString();
+        var time = new Date().toLocaleTimeString();
+        var data = JSON.stringify({ "datetime": date + "_" + time + "_test" , "csv":content }); 
+  
+        // Sending data with the request 
+        xhr.send(data); 
+
     }
 
     function downloadToFile (content, filename, contentType){
