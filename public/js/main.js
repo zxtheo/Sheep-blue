@@ -2,21 +2,11 @@
 var sheepList = [];
 var dogList = [];
 var states = []; //[sheep1x, sheep1y.....sheepNx, sheepNy, targetpointa, targetpointb, targetpointc, targetpointd, dogx, dogy, dogDirection, dogLeft, dogRight, dogForward]
-
 var start = false;
 var end = false;
 var timer = null;
-var timegiven = 5;
 var interval = timegiven * 1000;
-
 var score = null;
-
-var noOfSheep = 1;
-var noOfDogs = 1;
-var c = {
-    width: 600,
-    height: 600
-}
 var locked = false;
 var target = {
     startx: 0,
@@ -24,6 +14,19 @@ var target = {
     width: 100,
     height: 100
 };
+
+
+
+
+var timegiven = 5;
+var noOfSheep = 1;
+var noOfDogs = 1;
+var c = {
+    width: 600,
+    height: 600
+}
+
+
 
 var sim = function(p){
     p.setup = function(){
