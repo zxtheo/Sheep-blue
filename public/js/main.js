@@ -1,6 +1,7 @@
+var ai = false;
 
-var timegiven = 5;
-var noOfSheep = 1;
+var timegiven = 30;
+var noOfSheep = 10;
 var noOfDogs = 1;
 var c = {
     width: 600,
@@ -20,8 +21,8 @@ var locked = false;
 var target = {
     startx: 0,
     starty: 0,
-    width: 100,
-    height: 100
+    width: 600,
+    height: 300
 };
 
 
@@ -49,22 +50,27 @@ var sim = function(p){
         frames = p.frameRate();
         if (start){
             moveSheep();
-            moveDog();
             saveState();
+            moveDog();
         }
     }
-
+    function moveDog(){
+        dogList.forEach(dog => {
+            if (ai){
+                var input = states.pop()
+                // console.out(input)
+                playnet(input.slice(0, input.length - 3))
+            }
+            dog.move();
+            });
+    }
     function moveSheep(){
         sheepList.forEach(sheep => {
             sheep.move();    
         });
     }
 
-    function moveDog(){
-        dogList.forEach(dog => {
-            dog.move();
-        });
-    }
+    
 
     function saveState(){
         var state = [];
@@ -98,6 +104,7 @@ var draw = function(p){
     }
 
     p.draw = function() {
+        ai = document.getElementById("togBtn").checked;
         p.background('green');
         framerate();
         
@@ -108,6 +115,7 @@ var draw = function(p){
     }
 
     p.mousePressed = function(){
+        if (p.mouseX < c.width && p.mouseX >0 && p.mouseY >0 && p.mouseY < c.width)
         if (!start){
             if (!locked){
                 locked = true;
@@ -179,6 +187,10 @@ var draw = function(p){
             if (timer-p.millis() < 0) {
                 start = false;
                 end = true;
+                console.log("training dog please wait...")
+                trainmodel(states);
+                console.log("trained")
+                
                 saveToFile();
               }
         }

@@ -3,14 +3,21 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js" integrity="sha512-b/htz6gIyFi3dwSoZ0Uv3cuv3Ony7EeKkacgrcVg8CMzu90n777qveu0PBcbZUA7TzyENGtU+qZRuFAkfqgyoQ==" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/p5.collide2d"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/brain/0.6.3/brain.min.js" integrity="sha512-xP328xty9tPILO3Fn/uaxUPbKzxgkpFlfNT3zRDrr6tYEN0qVyP++TlyrP4oQer9MdvgLAIc5V/g+qar6Rt5DA==" crossorigin="anonymous"></script>
 
         <script src="js/animal.js"></script>
         <script src="js/tools.js"></script>
         <script src="js/dog.js"></script>
         <script src="js/sheep.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/model.js"></script> 
         
 
 
@@ -36,5 +43,11 @@
         <input type="range" min="12" max="60" value="12" class="slider" id="framerate">
         <p></p>
         
+        <button onClick="window.location.reload();">Refresh Page</button>
+        <p>AI</p>
+        <label class="switch">
+            <input type="checkbox" id="togBtn" value="false" name="ai">
+            <div class="slider round"></div>
+        </label>
     </body>
 </html>

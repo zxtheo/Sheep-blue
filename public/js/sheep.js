@@ -75,7 +75,7 @@ class Sheep extends Animal{
         l = this.checkLocation(l);
       
         var angle =degrees(l.angleBetween(this.loc));
-        console.log(angle)
+        // console.log(angle)
         if (angle != 0){
             this.direction += (this.direction - angle) % 360
         }
